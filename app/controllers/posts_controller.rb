@@ -7,8 +7,11 @@ class PostsController < ApplicationController
   def create
     post_params = params.require(:post).permit(:title, :body)
     @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path, notice: "Post Created"
+    if @post.save
+      redirect_to posts_path, notice: "Post Created"
+    else
+      render :new
+    end
   end
 
 end
