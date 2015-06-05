@@ -10,7 +10,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    post_params = params.require(:post).permit(:title, :body)
     @post = Post.new(post_params)
     if @post.save
       redirect_to posts_path, notice: "Post Created"
@@ -26,7 +25,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    post_params = params.require(:post).permit(:title, :body)
     if @post.update post_params
       redirect_to post_path(@post), notice: "Post Updated"
     else
@@ -38,6 +36,10 @@ class PostsController < ApplicationController
 
   def find_post
     @post = Post.find params[:id]
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 
 end
