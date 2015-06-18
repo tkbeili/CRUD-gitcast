@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  resources :posts
+  resources :posts do
+    resources :likes, only: [:create, :destroy]
+  end
 
   root "posts#index"
 
