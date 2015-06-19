@@ -20,6 +20,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @like = @post.like_for(current_user)
   end
 
   def edit

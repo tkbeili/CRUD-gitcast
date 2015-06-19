@@ -4,6 +4,12 @@
 
 <p><%= @post.created_at %></p>
 
+<% if @like.present? && @like.persisted? %>
+  <%= link_to "Un-Like", post_like_path(@post, @like), method: :delete %>
+<% else %>
+  <%= link_to "Like", post_likes_path(@post), method: :post %>
+<% end %>
+
 
 <%= link_to "Edit", edit_post_path(@post) %>
 

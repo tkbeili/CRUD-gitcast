@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end
