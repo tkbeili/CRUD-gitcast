@@ -24,9 +24,11 @@ class PostsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, alert: "access defined" unless can? :edit, @post
   end
 
   def update
+    redirect_to root_path, alert: "access defined" unless can? :update, @post
     if @post.update post_params
       redirect_to @post, notice: "Post Updated"
     else
@@ -35,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    redirect_to root_path, alert: "access defined" unless can? :destroy, @post
     @post.destroy
     redirect_to posts_path, notice: "Post Deleted"
   end
